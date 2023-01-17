@@ -4,14 +4,11 @@ public class Shop {
     public static int indexOfNull(Product[] products) {
         int rsl = -1;
         for (int index = 0; index < products.length; index++) {
-            Product product = products[index];
-            if (product == null) {
-                System.out.println(index);
+            if (products[index] == null) {
                 rsl = index;
                 break;
             }
-        }
-            return rsl;
+        } return rsl;
     }
 
     public static void main(String[] args) {
@@ -25,6 +22,5 @@ public class Shop {
                 System.out.println(product.getName());
             }
         }
-        indexOfNull(products);
     }
 }
