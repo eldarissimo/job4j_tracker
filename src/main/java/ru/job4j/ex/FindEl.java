@@ -15,11 +15,39 @@ public class FindEl {
         return rsl;
     }
 
+    public static boolean sent(String value, String[] abuses) throws ElementAbuseException {
+        boolean rsl = false;
+        for (int i = 0; i < abuses.length; i++) {
+            if (abuses[i].equals(value)) {
+                return true;
+            }
+        }
+        if (!rsl) {
+            throw new ElementAbuseException("Word is not allowed");
+        }
+        return true;
+    }
+
+    public static void process(String[] values, String key, String[] abuses) {
+        try {
+            if (indexOf(values, key) != -1) {
+                sent(key, abuses);
+            }
+        } catch (Throwable ea) {
+            ea.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         try {
-            indexOf(new String[]{"back", "get back", "come back"}, "go back");
+            indexOf(new String[]{"back", "get back", "come back"}, "back");
         } catch (ElementNotFoundException e) {
             e.printStackTrace();
+        }
+        try {
+            process(new String[]{"back", "get back", "come back"}, "back", new String[]{"back"});
+        } catch (Exception en) {
+            en.printStackTrace();
         }
     }
 }
