@@ -19,25 +19,23 @@ public class PasswordValidator {
             throw new IllegalArgumentException("Password should contain at least one lowercase letter");
         }
         boolean digit = false;
-        for (char numb : password.toCharArray()) {
-            if (Character.isDigit(numb)) {
+        boolean special = false;
+        for (char sign : password.toCharArray()) {
+            if (Character.isDigit(sign)) {
                 digit = true;
+            }
+            if (!Character.isDigit(sign) && !Character.isLetter(sign)) {
+                special = true;
                 break;
             }
         }
         if (!digit) {
             throw new IllegalArgumentException("Password should contain at least one figure");
         }
-        boolean special = false;
-        for (char symbol : password.toCharArray()) {
-            if (!Character.isDigit(symbol) && !Character.isLetter(symbol)) {
-                special = true;
-                break;
-            }
-        }
         if (!special) {
             throw new IllegalArgumentException("Password should contain at least one special symbol");
         }
+
         String[] illegal = {"qwerty", "12345", "password", "admin", "user"};
         for (String s : illegal) {
             if (password.toLowerCase().contains(s)) {
