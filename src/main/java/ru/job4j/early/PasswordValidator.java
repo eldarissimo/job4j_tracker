@@ -26,7 +26,6 @@ public class PasswordValidator {
             }
             if (!Character.isDigit(sign) && !Character.isLetter(sign)) {
                 special = true;
-                break;
             }
         }
         if (!digit) {
